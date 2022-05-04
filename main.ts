@@ -1,20 +1,22 @@
-let pausa = 0
+input.onLogoEvent(TouchButtonEvent.Pressed, function () {
+    while (true) {
+        DFRobotMaqueenPlus.setRGBLight(RGBLight.RGBL, Color.BLUE)
+        basic.showNumber(pausa)
+        DFRobotMaqueenPlus.setRGBLight(RGBLight.RGBL, Color.OFF)
+        DFRobotMaqueenPlus.setRGBLight(RGBLight.RGBR, Color.PINK)
+        basic.showNumber(pausa)
+        DFRobotMaqueenPlus.setRGBLight(RGBLight.RGBR, Color.OFF)
+    }
+})
 input.onButtonPressed(Button.A, function () {
-    DFRobotMaqueenPlus.setRGBLight(RGBLight.RGBL, Color.PINK)
-    pausa = 1000
-    DFRobotMaqueenPlus.setRGBLight(RGBLight.RGBL, Color.OFF)
-    DFRobotMaqueenPlus.setRGBLight(RGBLight.RGBR, Color.PINK)
-    pausa = 1000
-    DFRobotMaqueenPlus.setRGBLight(RGBLight.RGBR, Color.OFF)
+    pausa += 50
 })
 input.onButtonPressed(Button.B, function () {
-	
+    pausa += -50
 })
+let pausa = 0
+DFRobotMaqueenPlus.I2CInit()
+pausa = 1000
 basic.forever(function () {
-    DFRobotMaqueenPlus.setRGBLight(RGBLight.RGBL, Color.PINK)
-    pausa = pausa
-    DFRobotMaqueenPlus.setRGBLight(RGBLight.RGBL, Color.OFF)
-    DFRobotMaqueenPlus.setRGBLight(RGBLight.RGBR, Color.PINK)
-    pausa = pausa
-    DFRobotMaqueenPlus.setRGBLight(RGBLight.RGBR, Color.OFF)
+    basic.showNumber(pausa)
 })
